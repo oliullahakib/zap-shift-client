@@ -11,7 +11,7 @@ const Navbar = () => {
         <li><NavLink to={'/pricing'} className={'text-accent'}>Pricing</NavLink></li>
         <li><NavLink to={'/blog'} className={'text-accent'}>Blog</NavLink></li>
         <li><NavLink to={'/contact'} className={'text-accent'}>Contact</NavLink></li>
-       
+
     </>
     return (
         <Mydiv className={'sticky top-0 z-10 glass-card'}>
@@ -24,18 +24,20 @@ const Navbar = () => {
                         <ul
                             tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                           {links}
+                            {links}
+                            <Link to={''} className="btn text-accent my-4">Sign In</Link>
+                            <Link to={''} className="btn btn-primary text-black ">Be a rider</Link>
                         </ul>
                     </div>
-                    <Logo/>
+                    <Logo />
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        
-                       {links}
+
+                        {links}
                     </ul>
                 </div>
-                <div className="navbar-end ml-5 ">
+                <div className="navbar-end ml-5 hidden lg:flex ">
                     <Link to={''} className="btn text-accent mr-5">Sign In</Link>
                     <Link to={''} className="btn btn-primary text-black ">Be a rider</Link>
                 </div>

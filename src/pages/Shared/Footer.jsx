@@ -15,7 +15,7 @@ const Footer = () => {
     </>
     return (
         <Mydiv>
-            <footer className="footer footer-horizontal footer-center bg-black text-primary-content rounded-3xl mb-5 p-10">
+            <footer className="footer footer-horizontal footer-center bg-black text-primary-content rounded-xl lg:rounded-3xl mb-5 p-10">
                 <aside>
                    <Logo/>
                     <p className="text-accent font-bold">
@@ -23,7 +23,7 @@ const Footer = () => {
                     </p>
                    
                 </aside>
-                <div className="w-full links border-y border-dashed border-secondary flex justify-center  gap-5 py-5">
+                <div className="w-full links border-y border-dashed border-secondary flex flex-col md:flex-row justify-center  gap-5 py-5">
                 {links}
                 </div>
                 <nav>
