@@ -14,8 +14,8 @@ const Navbar = () => {
        
     </>
     return (
-        <Mydiv>
-            <div className="navbar bg-base-100 rounded-xl shadow-sm">
+        <Mydiv className={'sticky top-0 z-10 glass-card'}>
+            <div className="navbar  rounded-xl shadow-sm ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -35,7 +35,7 @@ const Navbar = () => {
                        {links}
                     </ul>
                 </div>
-                <div className="navbar-end ">
+                <div className="navbar-end ml-5 ">
                     <Link to={''} className="btn text-accent mr-5">Sign In</Link>
                     <Link to={''} className="btn btn-primary text-black ">Be a rider</Link>
                 </div>
