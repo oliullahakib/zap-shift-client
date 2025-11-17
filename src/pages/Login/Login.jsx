@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -39,7 +40,8 @@ const Login = () => {
                             {errors.password.message}
                         </p>}
                     <div><a className="link link-hover">Forgot password?</a></div>
-                    <button className="btn btn-neutral mt-4">Login</button>
+                    <button className="btn btn-primary text-black mt-4">Login</button>
+                        <p className='font-semibold'>New to ZapShift? Please <Link to={"/register"} className='text-green-400 underline'>Register</Link></p>
                 </form>
             </div>
         </div>
