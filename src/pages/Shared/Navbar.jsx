@@ -25,7 +25,7 @@ const Navbar = () => {
                             tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                             {links}
-                            <Link to={''} className="btn text-accent my-4">Sign In</Link>
+                            <Link to={'/login'} className="btn text-accent my-4">Sign In</Link>
                             <Link to={''} className="btn btn-primary text-black ">Be a rider</Link>
                         </ul>
                     </div>
@@ -38,7 +38,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end ml-5 hidden lg:flex ">
-                    <Link to={''} className="btn text-accent mr-5">Sign In</Link>
+                    <Link to={'/login'} className="btn text-accent mr-5">Sign In</Link>
                     <Link to={''} className="btn btn-primary text-black ">Be a rider</Link>
                 </div>
             </div>
