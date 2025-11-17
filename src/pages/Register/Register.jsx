@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -10,6 +10,8 @@ const Register = () => {
     const {creatUser,updateUser}=useAuth()
     const [show, setShow] = useState(false)
     const {register,handleSubmit,formState:{errors}}=useForm()
+    const location = useLocation()
+    const navigate = useNavigate()
     const handleRegister=(data)=>{
         const profileImg=data.photo[0]
         creatUser(data.email,data.password)
@@ -20,10 +22,10 @@ const Register = () => {
             const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`
             axios.post(url,formData)
             .then(res=>{
-                console.log(res.data.data.url)
                 updateUser({displayName:data.name,photoURL:res.data.data.url})
                 .then(()=>{
                    toast.success("User Created Successfully")
+                   navigate(location?.state ||'/')
                 })
             })
         })

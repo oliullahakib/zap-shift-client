@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 
 const Navbar = () => {
-    const { user,logOutUser } = useAuth()
+    const { user, logOutUser } = useAuth()
     const links = <>
         <li><NavLink to={'/services'} className={'text-accent'}>Services</NavLink></li>
         <li><NavLink to={'/converage'} className={'text-accent'}>Coverage</NavLink></li>
@@ -16,11 +16,11 @@ const Navbar = () => {
         <li><NavLink to={'/contact'} className={'text-accent'}>Contact</NavLink></li>
 
     </>
-    const hanldeLogout=()=>{
+    const hanldeLogout = () => {
         logOutUser()
-        .then(()=>{
-            toast.success("Logout")
-        })
+            .then(() => {
+                toast.success("Logout")
+            })
     }
     return (
         <div className={'sticky top-0 z-10 glass-card w-2/3 mx-auto'}>
@@ -34,8 +34,12 @@ const Navbar = () => {
                             tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                             {links}
-                            <Link to={'/login'} className="btn text-accent my-4">Sign In</Link>
-                            <Link to={''} className="btn btn-primary text-black ">Be a rider</Link>
+                            {
+                                user ? <button onClick={hanldeLogout} className='btn btn-warning'>Logout</button> : <>
+                                    <Link to={'/login'} className="btn text-accent mr-5">Sign In</Link>
+                                    <Link to={''} className="btn btn-primary text-black ">Be a rider</Link>
+                                </>
+                            }
                         </ul>
                     </div>
                     <Logo />
@@ -48,9 +52,12 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end ml-5 hidden lg:flex ">
                     {
-                        user ? <button onClick={hanldeLogout} className='btn btn-warning'>Logout</button> : <>
+                        user ?<div className='flex gap-3'>
+                            <img className='w-12 h-12 rounded-full border p-1' src={user?.photoURL} alt="" />
+                             <button onClick={hanldeLogout} className='btn btn-warning'>Logout</button>
+                        </div> : <>
                             <Link to={'/login'} className="btn text-accent mr-5">Sign In</Link>
-                            <Link to={''} className="btn btn-primary text-black ">Be a rider</Link>
+                            <Link to={'/be-a-rider'} className="btn btn-primary text-black ">Be a rider</Link>
                         </>
                     }
                 </div>

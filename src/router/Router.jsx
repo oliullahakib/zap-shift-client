@@ -4,6 +4,8 @@ import Home from "../pages/Home/Home/Home";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import PrivateRoute from "./PrivateRoute";
+import BeARider from "../pages/BeARider/BeARider";
 
 export const router = createBrowserRouter([
     {
@@ -13,6 +15,10 @@ export const router = createBrowserRouter([
             {
                 index:true,
                 Component:Home
+            },
+            {
+                path:"/be-a-rider",
+                element:<PrivateRoute><BeARider/></PrivateRoute>
             }
         ]
     },

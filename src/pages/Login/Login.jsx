@@ -1,18 +1,19 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 
 const Login = () => {
     const {loginUser}=useAuth()
     const { register, handleSubmit, formState: { errors } } = useForm()
+    const location = useLocation()
     const navigate = useNavigate()
     const handleLogin = (data) => {
         loginUser(data.email,data.password)
         .then(()=>{
             toast.success("Login Successfully")
-            navigate('/')
+            navigate(location?.state ||'/')
         })
     }
     return (
@@ -49,7 +50,7 @@ const Login = () => {
                         </p>}
                     <div><a className="link link-hover">Forgot password?</a></div>
                     <button className="btn btn-primary text-black mt-4">Login</button>
-                        <p className='font-semibold'>New to ZapShift? Please <Link to={"/register"} className='text-green-400 underline'>Register</Link></p>
+                        <p className='font-semibold'>New to ZapShift? Please <Link state={location?.state} to={"/register"} className='text-green-400 underline'>Register</Link></p>
                 </form>
             </div>
         </div>
