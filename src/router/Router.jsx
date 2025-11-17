@@ -6,6 +6,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import BeARider from "../pages/BeARider/BeARider";
+import Converage from "../pages/Converage/Converage";
 
 export const router = createBrowserRouter([
     {
@@ -19,6 +20,11 @@ export const router = createBrowserRouter([
             {
                 path:"/be-a-rider",
                 element:<PrivateRoute><BeARider/></PrivateRoute>
+            },
+            {
+                path:'/converage',
+                Component:Converage,
+                loader:()=>fetch('/serviceCenters.json')
             }
         ]
     },
