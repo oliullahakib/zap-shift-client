@@ -1,11 +1,19 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const Login = () => {
+    const {loginUser}=useAuth()
     const { register, handleSubmit, formState: { errors } } = useForm()
+    const navigate = useNavigate()
     const handleLogin = (data) => {
-        console.log(data)
+        loginUser(data.email,data.password)
+        .then(()=>{
+            toast.success("Login Successfully")
+            navigate('/')
+        })
     }
     return (
         <div className=' w-full'>

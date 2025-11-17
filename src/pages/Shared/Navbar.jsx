@@ -2,8 +2,11 @@ import React from 'react';
 import { Link, NavLink } from 'react-router';
 import Mydiv from '../../components/Mydiv';
 import Logo from '../../components/Logo/Logo';
+import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
+    const { user,logOutUser } = useAuth()
     const links = <>
         <li><NavLink to={'/services'} className={'text-accent'}>Services</NavLink></li>
         <li><NavLink to={'/converage'} className={'text-accent'}>Coverage</NavLink></li>
@@ -13,9 +16,15 @@ const Navbar = () => {
         <li><NavLink to={'/contact'} className={'text-accent'}>Contact</NavLink></li>
 
     </>
+    const hanldeLogout=()=>{
+        logOutUser()
+        .then(()=>{
+            toast.success("Logout")
+        })
+    }
     return (
-        <Mydiv className={'sticky top-0 z-10 glass-card'}>
-            <div className="navbar  rounded-xl shadow-sm ">
+        <div className={'sticky top-0 z-10 glass-card w-2/3 mx-auto'}>
+            <div className="navbar rounded-xl shadow-sm ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -38,11 +47,15 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end ml-5 hidden lg:flex ">
-                    <Link to={'/login'} className="btn text-accent mr-5">Sign In</Link>
-                    <Link to={''} className="btn btn-primary text-black ">Be a rider</Link>
+                    {
+                        user ? <button onClick={hanldeLogout} className='btn btn-warning'>Logout</button> : <>
+                            <Link to={'/login'} className="btn text-accent mr-5">Sign In</Link>
+                            <Link to={''} className="btn btn-primary text-black ">Be a rider</Link>
+                        </>
+                    }
                 </div>
             </div>
-        </Mydiv>
+        </div>
     );
 };
 

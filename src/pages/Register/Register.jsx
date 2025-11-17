@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router';
+import useAuth from '../../hooks/useAuth';
 
 const Register = () => {
+    const {creatUser}=useAuth()
     const [show, setShow] = useState(false)
     const {register,handleSubmit,formState:{errors}}=useForm()
     const handleRegister=(data)=>{
-        console.log(data)
+        creatUser(data.email,data.password)
+        .then(res=>{
+            console.log(res.user)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
     return (
         <div className=' w-full'>
