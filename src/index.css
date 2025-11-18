@@ -29,3 +29,6 @@ body{
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
+a.active{
+  @apply bg-primary rounded-full font-bold
+}

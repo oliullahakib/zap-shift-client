@@ -11,7 +11,7 @@ const Navbar = () => {
         <li><NavLink to={'/services'} className={'text-accent'}>Services</NavLink></li>
         <li><NavLink to={'/converage'} className={'text-accent'}>Coverage</NavLink></li>
         <li><NavLink to={'/about-us'} className={'text-accent'}>About Us</NavLink></li>
-        <li><NavLink to={'/pricing'} className={'text-accent'}>Pricing</NavLink></li>
+       {user&& <li><NavLink to={'/send-parcel'} className={'text-accent'}>Send Parcel</NavLink></li>}
         <li><NavLink to={'/blog'} className={'text-accent'}>Blog</NavLink></li>
         <li><NavLink to={'/contact'} className={'text-accent'}>Contact</NavLink></li>
 
@@ -42,7 +42,7 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <Logo />
+                   <Link to={"/"}> <Logo /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

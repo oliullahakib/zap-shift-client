@@ -7,6 +7,7 @@ import Register from "../pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import BeARider from "../pages/BeARider/BeARider";
 import Converage from "../pages/Converage/Converage";
+import SendParcel from "../pages/SendParcel/SendParcel";
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +26,11 @@ export const router = createBrowserRouter([
                 path:'/converage',
                 Component:Converage,
                 loader:()=>fetch('/serviceCenters.json')
+            },
+            {
+                path:'/send-parcel',
+                element:<PrivateRoute><SendParcel/></PrivateRoute>,
+                loader:()=>fetch('/serviceCenters.json').then(res=>res.json())
             }
         ]
     },
