@@ -8,6 +8,8 @@ import PrivateRoute from "./PrivateRoute";
 import BeARider from "../pages/BeARider/BeARider";
 import Converage from "../pages/Converage/Converage";
 import SendParcel from "../pages/SendParcel/SendParcel";
+import Dashboard from "../layouts/Dashboard";
+import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
 
 export const router = createBrowserRouter([
     {
@@ -19,16 +21,16 @@ export const router = createBrowserRouter([
                 Component:Home
             },
             {
-                path:"/be-a-rider",
+                path:"be-a-rider",
                 element:<PrivateRoute><BeARider/></PrivateRoute>
             },
             {
-                path:'/converage',
+                path:'converage',
                 Component:Converage,
                 loader:()=>fetch('/serviceCenters.json')
             },
             {
-                path:'/send-parcel',
+                path:'send-parcel',
                 element:<PrivateRoute><SendParcel/></PrivateRoute>,
                 loader:()=>fetch('/serviceCenters.json').then(res=>res.json())
             }
@@ -39,13 +41,23 @@ export const router = createBrowserRouter([
         Component:AuthLayout,
         children:[
             {
-                path:"/login",
+                path:"login",
                 Component:Login
             },
             {
-                path:"/register",
+                path:"register",
                 Component:Register
             },
+        ]
+    },
+    {
+        path:"/dashboard",
+        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children:[
+            {
+                path:"my-parcels",
+                Component:MyParcels
+            }
         ]
     }
 ])

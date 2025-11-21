@@ -11,7 +11,11 @@ const Navbar = () => {
         <li><NavLink to={'/services'} className={'text-accent'}>Services</NavLink></li>
         <li><NavLink to={'/converage'} className={'text-accent'}>Coverage</NavLink></li>
         <li><NavLink to={'/about-us'} className={'text-accent'}>About Us</NavLink></li>
-       {user&& <li><NavLink to={'/send-parcel'} className={'text-accent'}>Send Parcel</NavLink></li>}
+       {user&& <>
+
+       <li><NavLink to={'/dashboard/my-parcels'} className={'text-accent'}>My Parcels</NavLink></li>
+       <li><NavLink to={'/send-parcel'} className={'text-accent'}>Send Parcel</NavLink></li>
+       </>}
         <li><NavLink to={'/blog'} className={'text-accent'}>Blog</NavLink></li>
         <li><NavLink to={'/contact'} className={'text-accent'}>Contact</NavLink></li>
 

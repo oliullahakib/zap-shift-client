@@ -39,7 +39,7 @@ const SendParcel = () => {
                 cost = minCost + extraCost
             }
         }
-
+        data.cost = cost;
         Swal.fire({
             title: "Aggree with our cost?",
             text: `Yout total cost ${cost}tk`,
@@ -95,7 +95,7 @@ const SendParcel = () => {
                     <div className='flex gap-5'>
                         <fieldset className="fieldset w-full">
                             <legend className="fieldset-legend">Parcel Name</legend>
-                            <input required type="text" className="input w-full" placeholder="Type here" />
+                            <input {...register("parcelName")} required type="text" className="input w-full" placeholder="Type here" />
                         </fieldset>
                         <fieldset className="fieldset  w-full">
                             <legend className="fieldset-legend">Parcel Weight(KG)</legend>
