@@ -10,6 +10,8 @@ import Converage from "../pages/Converage/Converage";
 import SendParcel from "../pages/SendParcel/SendParcel";
 import Dashboard from "../layouts/Dashboard";
 import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
+import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
+import PaymentCancel from "../pages/Dashboard/Payment/PaymentCancel";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +59,15 @@ export const router = createBrowserRouter([
             {
                 path:"my-parcels",
                 Component:MyParcels
+            },
+            {
+                path:"payment-success",
+                Component:PaymentSuccess
+            }
+            ,
+            {
+                path:"payment-cancel",
+                Component:PaymentCancel
             }
         ]
     }
