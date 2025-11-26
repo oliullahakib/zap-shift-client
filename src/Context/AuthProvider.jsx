@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContex';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
+import Loading from '../pages/Shared/Loading';
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
@@ -40,7 +41,7 @@ const AuthProvider = ({ children }) => {
         updateUser
     }
     return <AuthContext value={value} >
-        {loading?"Loading....":children}
+        {loading?<Loading/>:children}
     </AuthContext>
 };
 

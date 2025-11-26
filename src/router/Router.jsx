@@ -24,7 +24,8 @@ export const router = createBrowserRouter([
             },
             {
                 path:"be-a-rider",
-                element:<PrivateRoute><BeARider/></PrivateRoute>
+                element:<PrivateRoute><BeARider/></PrivateRoute>,
+                loader:()=>fetch('/serviceCenters.json')
             },
             {
                 path:'converage',
