@@ -3,6 +3,7 @@ import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaTrashAlt, FaUserCheck, FaUserTimes } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 
 const Riders = () => {
     const axiosSecure = useAxiosSecure()
@@ -42,7 +43,19 @@ const handleDeleteRider = (id) => {
             }
         });
     }
-console.log(riders)
+    const updateStatus=(rider,statusValue)=>{
+        // console.log(id,statusValue)
+        const status = statusValue
+        axiosSecure.patch(`/rider/${rider._id}`,{status,email:rider.email})
+        .then(res=>{
+            console.log(res.data)
+            if(res.data.modifiedCount){
+                toast.success(`Rider is ${statusValue}`)
+                refetch()
+            }
+        })
+        .catch(err=>console.log(err))
+    }
     return (
         <div>
             <div>
@@ -69,10 +82,10 @@ console.log(riders)
                                         <td>{rider.name}</td>
                                         <td>{rider.email}</td>
                                         <td>{rider.district}</td>
-                                        <td>{rider.status = "pending"}</td>
+                                        <td className={rider.status==="accepted"?'text-green-500':rider.status==="rejected"?"text-red-500":"text-black"}>{rider.status }</td>
                                         <td className='space-x-3'>
-                                            <button  className="btn btn-primary text-black"><FaUserCheck /></button>
-                                            <button  className="btn btn-error text-black"><FaUserTimes /></button>
+                                            <button disabled={rider.status==="accepted"?true:false} onClick={()=>updateStatus(rider,"accepted")} className="btn btn-primary text-black"><FaUserCheck /></button>
+                                            <button disabled={rider.status==="rejected"?true:false}  onClick={()=>updateStatus(rider,"rejected")}   className="btn btn-error text-black"><FaUserTimes /></button>
                                             <button onClick={()=>handleDeleteRider(rider._id)} className="btn hover:btn-error"><FaTrashAlt /></button>
                                         </td>
                                     </tr>)
