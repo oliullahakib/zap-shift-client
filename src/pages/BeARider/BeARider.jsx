@@ -38,7 +38,7 @@ const BeARider = () => {
         })
     }
 
-    // 💡 New: Reset Receiver District when Receiver Region changes
+    // 💡 New: Reset  District when Region changes
     useEffect(() => {
         // Reset to the initial disabled option's value or an empty string
         setValue('district', 'Pick a district');

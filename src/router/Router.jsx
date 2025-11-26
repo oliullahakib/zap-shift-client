@@ -12,6 +12,7 @@ import Dashboard from "../layouts/Dashboard";
 import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
 import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../pages/Dashboard/Payment/PaymentCancel";
+import Riders from "../pages/Dashboard/Riders/Riders";
 
 export const router = createBrowserRouter([
     {
@@ -69,6 +70,11 @@ export const router = createBrowserRouter([
             {
                 path:"payment-cancel",
                 Component:PaymentCancel
+            }
+            ,
+            {
+                path:"riders",
+                Component:Riders
             }
         ]
     }

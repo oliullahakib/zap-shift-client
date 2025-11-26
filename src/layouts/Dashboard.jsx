@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import { FaBagShopping } from 'react-icons/fa6';
+import { FaMotorcycle } from 'react-icons/fa';
 
 const Dashboard = () => {
     const {user}=useAuth()
@@ -23,7 +24,9 @@ const Dashboard = () => {
                     </div>
                 </nav>
                 {/* Page content here */}
-                <Outlet/>
+                <div className='px-5 mt-5'>
+                    <Outlet/>
+                </div>
             </div>
 
             <div className="drawer-side is-drawer-close:overflow-visible">
@@ -39,12 +42,20 @@ const Dashboard = () => {
                                 <span className="is-drawer-close:hidden">Homepage</span>
                             </Link>
                         </li>
-                        {/* List item */}
+                        {/*my parcels List item */}
                         <li>
-                            <Link to={'/dashboard/my-parcels'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
+                            <Link to={'/dashboard/my-parcels'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Parcels">
                                 {/* my parcels icon */}
                                <FaBagShopping />
                                 <span className="is-drawer-close:hidden">My Parcels</span>
+                            </Link>
+                        </li>
+                        {/*rider List item */}
+                        <li>
+                            <Link to={'/dashboard/riders'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider">
+                                {/* my parcels icon */}
+                               <FaMotorcycle />
+                                <span className="is-drawer-close:hidden">Rider</span>
                             </Link>
                         </li>
 
