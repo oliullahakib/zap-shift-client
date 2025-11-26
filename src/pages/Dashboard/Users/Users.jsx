@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaUserShield } from 'react-icons/fa';
 import { GiShieldDisabled } from "react-icons/gi";
@@ -17,9 +16,8 @@ const Users = () => {
         }
     })
 
-    const updateRole = async(id,role)=>{
-       const res = await axiosSecure.patch(`/user/${id}/role`,{role})
-       console.log(res.data)
+    const updateRole = async(user,role)=>{
+       const res = await axiosSecure.patch(`/user/${user._id}/role`,{role})
        if(res.data.modifiedCount){
         refetch()
         toast.success(`${user.displayName} is made to ${role}`)
@@ -71,8 +69,8 @@ const Users = () => {
                                 </td>
                                 <td>{user.role}</td>
                                 <th>
-                                    <button disabled={user.role==="admin"?true:false} onClick={()=>updateRole(user._id,"admin")} className="btn hover:btn-success mr-2"><FaUserShield /></button>
-                                    <button disabled={user.role==="user"?true:false} onClick={()=>updateRole(user._id,"user")} className="btn hover:btn-error"><GiShieldDisabled /></button>
+                                    <button disabled={user.role==="admin"?true:false} onClick={()=>updateRole(user,"admin")} className="btn hover:btn-success mr-2"><FaUserShield /></button>
+                                    <button disabled={user.role==="user"?true:false} onClick={()=>updateRole(user,"user")} className="btn hover:btn-error"><GiShieldDisabled /></button>
                                 </th>
                                 <td>Action</td>
                             </tr>)}
