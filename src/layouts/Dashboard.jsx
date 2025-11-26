@@ -3,9 +3,14 @@ import { Link, Outlet } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import { FaBagShopping } from 'react-icons/fa6';
 import { FaMotorcycle, FaUsers } from 'react-icons/fa';
+import useRole from '../hooks/useRole';
+import Loading from '../pages/Shared/Loading';
 
 const Dashboard = () => {
-    const {user}=useAuth()
+    const { user } = useAuth()
+    const { isLoading, role } = useRole()
+    if (isLoading) return <Loading />
+    console.log(role)
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -25,7 +30,7 @@ const Dashboard = () => {
                 </nav>
                 {/* Page content here */}
                 <div className='px-5 mt-5'>
-                    <Outlet/>
+                    <Outlet />
                 </div>
             </div>
 
@@ -46,26 +51,29 @@ const Dashboard = () => {
                         <li>
                             <Link to={'/dashboard/my-parcels'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Parcels">
                                 {/* my parcels icon */}
-                               <FaBagShopping />
+                                <FaBagShopping />
                                 <span className="is-drawer-close:hidden">My Parcels</span>
                             </Link>
                         </li>
-                        {/*rider List item */}
-                        <li>
-                            <Link to={'/dashboard/riders'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider">
-                                {/* my parcels icon */}
-                               <FaMotorcycle />
-                                <span className="is-drawer-close:hidden">Rider</span>
-                            </Link>
-                        </li>
-                        {/*users List item */}
-                        <li>
-                            <Link to={'/dashboard/users'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users">
-                                {/* my parcels icon */}
-                               <FaUsers />
-                                <span className="is-drawer-close:hidden">Users</span>
-                            </Link>
-                        </li>
+                        {role === "admin" && <>
+
+                            <li>
+                                <Link to={'/dashboard/riders'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider">
+                                    {/* rider icon */}
+                                    <FaMotorcycle />
+                                    <span className="is-drawer-close:hidden">Rider</span>
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link to={'/dashboard/users'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users">
+                                    {/* users icon */}
+                                    <FaUsers />
+                                    <span className="is-drawer-close:hidden">Users</span>
+                                </Link>
+                            </li>
+                        </>}
+
 
                         {/* List item */}
                         <li>

@@ -17,7 +17,7 @@ const useAxiosSecure = () => {
         return () => {
             instance.interceptors.request.eject(reqInterceptor)
         }
-    }, [])
+    }, [user])
 
     return instance
 };
