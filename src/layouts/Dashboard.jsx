@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import { FaBagShopping } from 'react-icons/fa6';
-import { FaMotorcycle } from 'react-icons/fa';
+import { FaMotorcycle, FaUsers } from 'react-icons/fa';
 
 const Dashboard = () => {
     const {user}=useAuth()
@@ -56,6 +56,14 @@ const Dashboard = () => {
                                 {/* my parcels icon */}
                                <FaMotorcycle />
                                 <span className="is-drawer-close:hidden">Rider</span>
+                            </Link>
+                        </li>
+                        {/*users List item */}
+                        <li>
+                            <Link to={'/dashboard/users'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users">
+                                {/* my parcels icon */}
+                               <FaUsers />
+                                <span className="is-drawer-close:hidden">Users</span>
                             </Link>
                         </li>
 

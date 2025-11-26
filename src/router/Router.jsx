@@ -13,6 +13,7 @@ import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
 import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../pages/Dashboard/Payment/PaymentCancel";
 import Riders from "../pages/Dashboard/Riders/Riders";
+import Users from "../pages/Dashboard/Users/Users";
 
 export const router = createBrowserRouter([
     {
@@ -75,6 +76,11 @@ export const router = createBrowserRouter([
             {
                 path:"riders",
                 Component:Riders
+            }
+            ,
+            {
+                path:"users",
+                Component:Users
             }
         ]
     }
