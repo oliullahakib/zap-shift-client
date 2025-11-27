@@ -22,7 +22,6 @@ const BeARider = () => {
         return districts
     }
     const handleRiderApplication = (data) => {
-        console.log(data)
         axiosSecure.post('/rider',data)
         .then(res=>{
             console.log(res.data)
