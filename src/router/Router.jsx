@@ -14,6 +14,8 @@ import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../pages/Dashboard/Payment/PaymentCancel";
 import Riders from "../pages/Dashboard/Riders/Riders";
 import Users from "../pages/Dashboard/Users/Users";
+import AdminRoute from "./AdminRoute";
+import Forbidden from "../pages/Shared/Forbidden";
 
 export const router = createBrowserRouter([
     {
@@ -60,6 +62,10 @@ export const router = createBrowserRouter([
         element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children:[
             {
+                index:true,
+                Component:MyParcels
+            },
+            {
                 path:"my-parcels",
                 Component:MyParcels
             },
@@ -80,8 +86,12 @@ export const router = createBrowserRouter([
             ,
             {
                 path:"users",
-                Component:Users
+                element:<AdminRoute><Users/></AdminRoute>
             }
         ]
+    },
+    {
+        path:'/forbidden',
+        Component:Forbidden
     }
 ])

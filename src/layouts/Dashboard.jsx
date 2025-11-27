@@ -5,12 +5,12 @@ import { FaBagShopping } from 'react-icons/fa6';
 import { FaMotorcycle, FaUsers } from 'react-icons/fa';
 import useRole from '../hooks/useRole';
 import Loading from '../pages/Shared/Loading';
+import { Navigate } from 'react-router';
 
 const Dashboard = () => {
     const { user } = useAuth()
     const { isLoading, role } = useRole()
     if (isLoading) return <Loading />
-    console.log(role)
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
