@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import { FaBagShopping } from 'react-icons/fa6';
-import { FaMotorcycle, FaUsers } from 'react-icons/fa';
+import { FaBiking, FaMotorcycle, FaUsers } from 'react-icons/fa';
 import useRole from '../hooks/useRole';
 import Loading from '../pages/Shared/Loading';
 import { Navigate } from 'react-router';
@@ -55,8 +55,9 @@ const Dashboard = () => {
                                 <span className="is-drawer-close:hidden">My Parcels</span>
                             </Link>
                         </li>
+                        {/* admin only links  */}
                         {role === "admin" && <>
-
+                            {/* rider application  */}
                             <li>
                                 <Link to={'/dashboard/riders'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Rider">
                                     {/* rider icon */}
@@ -64,12 +65,20 @@ const Dashboard = () => {
                                     <span className="is-drawer-close:hidden">Rider</span>
                                 </Link>
                             </li>
-
+                            {/* user management  */}
                             <li>
                                 <Link to={'/dashboard/users'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users">
                                     {/* users icon */}
                                     <FaUsers />
                                     <span className="is-drawer-close:hidden">Users</span>
+                                </Link>
+                            </li>
+                            {/* assign rider  */}
+                            <li>
+                                <Link to={'/dashboard/assign-rider'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign Rider">
+                                    {/* users icon */}
+                                    <FaBiking />
+                                    <span className="is-drawer-close:hidden">Assign Rider</span>
                                 </Link>
                             </li>
                         </>}

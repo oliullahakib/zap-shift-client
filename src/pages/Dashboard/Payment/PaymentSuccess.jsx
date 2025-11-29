@@ -8,9 +8,9 @@ const PaymentSuccess = () => {
     const axiosSecure=useAxiosSecure()
     const sesson_id=searchParams.get("session_id")
     useEffect(() => {
-     axiosSecure.patch(`/payment?session_id=${sesson_id}`)
+     axiosSecure.patch(`/payment-success?session_id=${sesson_id}`)
      .then(res=>{
-        console.log(res.data)
+        console.log(res?.data)
         setPaymentInfo({
             transactionId:res.data.transactionId,
             trakingId:res.data.trakingId
@@ -19,7 +19,6 @@ const PaymentSuccess = () => {
      .catch(err => console.log(err))
 
     }, [axiosSecure,sesson_id])
-    console.log(paymentInfo)
     return (
         <div>
              <h1 className='text-center text-4xl font-bold mt-6'>Your Payment is Successful</h1>

@@ -11,7 +11,7 @@ const MyParcels = () => {
     const { data: parcels = [], refetch } = useQuery({
         queryKey: ['my-parcels', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/my-parcels?email=${user?.email}`)
+            const res = await axiosSecure.get(`/dashboard/my-parcels?email=${user?.email}`)
             return res.data
 
         }
@@ -52,7 +52,8 @@ const MyParcels = () => {
             email: parcel.senderEmail,
             name: parcel.parcelName,
             parcelId: parcel._id,
-            cost: parcel.cost
+            cost: parcel.cost,
+            trakingId:parcel.trakingId
         }
      const res= await axiosSecure.post('/payment-checkout-session',parcelInfo)
      console.log(res.data)
@@ -83,7 +84,7 @@ const MyParcels = () => {
                                     <th>{i + 1}</th>
                                     <td>{parcel.parcelName}</td>
                                     <td>{parcel.cost}</td>
-                                    <td>{parcel.paymentStatus = "Unpaind"}</td>
+                                    <td>{parcel?.paymentStatus || "Unpaind"}</td>
                                     <td className='space-x-3'>
                                         <button onClick={() => handlePayment(parcel)} className="btn btn-primary text-black">Pay</button>
                                         <button onClick={() => handleDelete(parcel._id)} className="btn hover:btn-error"><FaTrashAlt /></button>

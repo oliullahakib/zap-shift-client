@@ -16,6 +16,7 @@ import Riders from "../pages/Dashboard/Riders/Riders";
 import Users from "../pages/Dashboard/Users/Users";
 import AdminRoute from "./AdminRoute";
 import Forbidden from "../pages/Shared/Forbidden";
+import AssignRider from "../pages/Dashboard/AssignRider/AssignRider";
 
 export const router = createBrowserRouter([
     {
@@ -82,11 +83,16 @@ export const router = createBrowserRouter([
             {
                 path:"riders",
                 Component:Riders
-            }
-            ,
+            },
+            // admin only route 
             {
                 path:"users",
                 element:<AdminRoute><Users/></AdminRoute>
+            }
+            ,
+            {
+                path:"assign-rider",
+                element:<AdminRoute><AssignRider/></AdminRoute>
             }
         ]
     },
