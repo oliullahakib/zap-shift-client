@@ -2,12 +2,13 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useRef, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 const AssignRider = () => {
     const [selectedParcel, setSelectedParcel] = useState(null)
     const axiosSecure = useAxiosSecure()
     const riderModalRef = useRef()
-    const { data: parcels = [] } = useQuery({
+    const { data: parcels = [],refetch:parcelRefetch } = useQuery({
         queryKey: ['parcels', 'pending-pickup'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/parcels?deliveryStatus=pending-pickup`)
@@ -15,7 +16,7 @@ const AssignRider = () => {
         }
     })
     // finding the rider 
-    const { data: riders = [] } = useQuery({
+    const { data: riders = [],refetch:riderRefetch } = useQuery({
         queryKey: ['rider', selectedParcel?.senderDistrict,'available'],
         enabled: !!selectedParcel,
         queryFn: async () => {
@@ -26,6 +27,23 @@ const AssignRider = () => {
     const handleFindRider = (parcel) => {
         setSelectedParcel(parcel)
         riderModalRef.current.showModal()
+    }
+    const handleAssignRider=(rider)=>{
+        const assignRiderInfo ={
+           riderId:rider._id,
+           riderName:rider.name,
+           riderEmail:rider.email 
+        }
+        axiosSecure.patch(`/parcel/${selectedParcel._id}`,assignRiderInfo)
+        .then(res=>{
+            console.log(res.data)
+            if(res.data.modifiedCount){
+                riderModalRef.current.close()
+                toast.success('Rider is assign successfuly')
+                riderRefetch()
+                parcelRefetch()
+            }
+        })
     }
     return (
         <div>
@@ -52,7 +70,7 @@ const AssignRider = () => {
                                 <td>{parcel.createdAt}</td>
                                 <td>{parcel.senderDistrict}</td>
                                 <td>
-                                    <button onClick={() => handleFindRider(parcel)} className=' btn btn-primary text-black'>Find Rider</button>
+                                    <button onClick={() => handleFindRider(parcel)} className=' btn btn-primary text-black'>Find Riders</button>
                                 </td>
                             </tr>)}
 
@@ -85,7 +103,7 @@ const AssignRider = () => {
                                         <td>{rider?.name}</td>
                                         <td>{rider?.email}</td>
                                         <td>
-                                            <button className='btn btn-primary text-black'>Assign</button>
+                                            <button onClick={()=>handleAssignRider(rider)} className='btn btn-primary text-black'>Assign</button>
                                         </td>
                                     </tr>)}
                                     
