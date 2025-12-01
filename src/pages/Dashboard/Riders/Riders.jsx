@@ -47,7 +47,7 @@ const handleDeleteRider = (id) => {
         const status = statusValue
         axiosSecure.patch(`/rider/${rider._id}`,{status,email:rider.email})
         .then(res=>{
-            console.log(res.data)
+            console.log(res?.data)
             if(res.data.modifiedCount){
                 toast.success(`Rider is ${statusValue}`)
                 refetch()

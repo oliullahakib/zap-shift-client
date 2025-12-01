@@ -73,6 +73,7 @@ const MyParcels = () => {
                                 <th>SLNo</th>
                                 <th>Name</th>
                                 <th>Amount</th>
+                                <th>Traking ID</th>
                                 <th>Payment</th>
                                 <th>Action</th>
                             </tr>
@@ -84,9 +85,10 @@ const MyParcels = () => {
                                     <th>{i + 1}</th>
                                     <td>{parcel.parcelName}</td>
                                     <td>{parcel.cost}</td>
-                                    <td>{parcel?.paymentStatus || "Unpaind"}</td>
+                                    <td>{parcel.trakingId}</td>
+                                    <td className={`${parcel?.paymentStatus ==="paid"&&'text-green-400'}`}>{parcel?.paymentStatus || "Unpaid"}</td>
                                     <td className='space-x-3'>
-                                        <button onClick={() => handlePayment(parcel)} className="btn btn-primary text-black">Pay</button>
+                                       {parcel.paymentStatus==="paid"?"": <button onClick={() => handlePayment(parcel)} className="btn btn-primary text-black">Pay</button>}
                                         <button onClick={() => handleDelete(parcel._id)} className="btn hover:btn-error"><FaTrashAlt /></button>
                                     </td>
                                 </tr>)
